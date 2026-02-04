@@ -1,0 +1,92 @@
+﻿/* Background */
+body.login-page {
+    margin: 0;
+    min-height: 100vh;
+    background: url('/images/login-bg.png') center center / cover no-repeat fixed;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Card */
+.login-card {
+    width: 480px;
+    margin: 10vh auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    background: #153a63; /* navy */
+}
+
+    /* White band heading */
+    .login-card .header {
+        background: #fff;
+        color: #153a63;
+        text-align: center;
+        padding: 14px 18px;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    /* Body */
+    .login-card .body {
+        padding: 28px;
+    }
+
+    /* Labels & inputs */
+    .login-card label {
+        display: block;
+        color: #e7eef7;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .login-card input[type="text"],
+    .login-card input[type="password"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 6px;
+        background: #fff;
+        color: #111;
+        outline: none;
+        margin-bottom: 16px;
+    }
+
+    /* Button */
+    .login-card button {
+        width: 120px;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #fff;
+        color: #111;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+.validation-summary-errors {
+    background: rgba(255,255,255,.9);
+    color: #b00020;
+    border-left: 4px solid #b00020;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+/* Ensure padding doesn't push inputs beyond the card's right edge */
+.login-card input[type="text"],
+.login-card input[type="password"],
+.login-card button {
+    box-sizing: border-box;
+}
+
+/* Show field-level errors next to inputs (if you use asp-validation-for spans) */
+.field-validation-error {
+    color: #ffe3e3;
+    font-size: 12px;
+}
+
+/* (Optional) keep equal padding on both sides of the card body */
+.login-card .body {
+    padding: 28px 28px; /* equal L/R */
+}
+

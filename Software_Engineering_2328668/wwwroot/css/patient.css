@@ -1,0 +1,160 @@
+﻿/* Container: sidebar + main content (centered to 1100px) */
+.patient-wrap {
+    max-width: 1100px;
+    margin: 16px 0 16px 16px;
+    padding: 0 16px 0 0;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+}
+
+/* Fixed/sticky sidebar */
+.patient-sidebar {
+    position: sticky;
+    top: 12px; /* sticks when scrolling; sits under the headers */
+    align-self: start;
+    background: #153a63;
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px 12px;
+}
+
+.patient-card {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+    .patient-card .p-name {
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .patient-card .p-meta {
+        font-size: 12px;
+        color: #eaf1ff;
+    }
+
+    .patient-card .tag {
+        display: inline-block;
+        font-weight: 600;
+        color: #cfe0ff;
+        margin-right: 4px;
+    }
+
+    .patient-card .sep {
+        opacity: .5;
+        margin: 0 6px;
+    }
+
+/* Sidebar nav */
+.patient-nav {
+    display: grid;
+    gap: 6px;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #e9f2ff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .nav-link:hover {
+        background: rgba(255,255,255,0.12);
+    }
+
+    .nav-link.active {
+        background: #0e2a49;
+    }
+
+/* Main content scrolls (sidebar stays sticky) */
+.patient-main {
+    background: #fff;
+    border: 1px solid #e5edf6;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 60vh;
+}
+
+/* Make table rows feel interactive */
+.table tr:hover td {
+    background: #fafcff;
+}
+
+/* Stats column boxes (right of legend) */
+.stats-col .stat-box {
+    width: 140px; /* fits the panel nicely */
+    background: #f7f9fc;
+    border: 1px solid #e5edf6;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.stats-col .stat-name {
+    font-size: 12px;
+    color: #4e5d74;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.stats-col .stat-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0e1d2f;
+    text-align: center;
+}
+
+/* Centered circular spinner inside the heatmap panel */
+
+/* Spinner overlay covers the whole panel so it's noticeable */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 3;
+}
+
+/* Existing spinner kept; placed inside overlay */
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #cfd8e3;
+    border-top-color: #153a63;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Navy Download button */
+#btnDownload {
+    background: #153a63; /* company navy */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+    #btnDownload:hover {
+        filter: brightness(1.08);
+    }
+
+    #btnDownload:disabled {
+        opacity: 0.6;
+        cursor: default;
+    }

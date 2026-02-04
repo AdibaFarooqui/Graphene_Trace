@@ -1,0 +1,39 @@
+﻿/* Light grey strip above the navy bar */
+.brandbar {
+  background: #f2f5f8;
+  border-bottom: 1px solid #e5edf6;
+}
+.brand-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-logo {
+  height: 28px;        /* adjust if needed */
+  width: auto;
+  display: block;
+}
+.brand-title {
+  font-weight: 700;
+  color: #1e2a3a;
+  letter-spacing: .2px;
+}
+
+/* Global interaction cue */
+a, button, [role="button"], .clickable {
+  cursor: pointer;
+}
+
+/* Subtle polish for the navy topbar (shadow) */
+.topbar {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+/* Table hover and readability tweaks */
+.table tr:hover td {
+  background: #fafcff;
+}
+

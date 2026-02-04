@@ -1,0 +1,35 @@
+﻿@model Software_Engineering_2328668.Models.ViewModels.PatientDetailsViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianPatientLayout.cshtml";
+    ViewData["ActiveTab"] = "details";
+    ViewData["Title"] = "Patient Details";
+}
+<section>
+    <h1 style="margin:0 0 12px 0;">Patient details</h1>
+
+    @if (TempData["Saved"] != null)
+    {
+        <div style="background:#e9f7ef; border:1px solid #bfe6c9; color:#1d6b3b; padding:8px 10px; border-radius:6px; margin-bottom:10px;">
+            @TempData["Saved"]
+        </div>
+    }
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px;">
+        <div><strong>First name</strong><div>@Model.FirstName</div></div>
+        <div><strong>Last name</strong><div>@Model.LastName</div></div>
+        <div><strong>Date of birth</strong><div>@(Model.Dob?.ToString("yyyy-MM-dd") ?? "—")</div></div>
+        <div><strong>Weight</strong><div>@(Model.WeightKg?.ToString("0.##") ?? "—") kg</div></div>
+        <div><strong>Sensore ID</strong><div>@Model.SensoreId</div></div>
+        <div><strong>Base seating threshold</strong><div>@(Model.BaseSeatingThresholdAu?.ToString() ?? "—") AU</div></div>
+        <div><strong>Alert threshold</strong><div>@(Model.AlertThresholdAu?.ToString() ?? "—") AU</div></div>
+    </div>
+
+    <form method="post" action="@Url.Action("PatientDetails","Clinician", new { id = Model.PatientId })">
+        @Html.AntiForgeryToken()
+        <div style="margin-bottom:8px;"><strong>Notes (editable)</strong></div>
+        <textarea name="Notes" rows="6" style="width:100%; padding:10px; border:1px solid #c8d2e0; border-radius:8px;">@Model.Notes</textarea>
+        <div style="margin-top:8px;">
+            <button type="submit" style="padding:8px 14px; background:#153a63; color:#fff; border:0; border-radius:8px;">Save notes</button>
+        </div>
+    </form>
+</section>

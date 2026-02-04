@@ -1,0 +1,59 @@
+﻿@model Software_Engineering_2328668.Models.ViewModels.PatientAlertsViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianPatientLayout.cshtml";
+    ViewData["ActiveTab"] = "alerts";
+    ViewData["Title"] = "Alerts";
+}
+
+<section>
+    <h1 style="margin:0 0 12px 0;">Alerts</h1>
+
+    <form method="get" action="@Url.Action("Alerts","Clinician", new { id = Model.PatientId })" style="margin-bottom:10px;">
+        <label>Sort:</label>
+        <label style="margin-left:8px;">
+            <input type="radio" name="sort" value="newest" @(Model.Sort == "newest" ? "checked" : null) onchange="this.form.submit()"> Newest
+        </label>
+        <label style="margin-left:8px;">
+            <input type="radio" name="sort" value="oldest" @(Model.Sort == "oldest" ? "checked" : null) onchange="this.form.submit()"> Oldest
+        </label>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:160px;">Triggered (local)</th>
+                <th style="width:120px;">Duration</th>
+                <th style="width:120px;">Threshold</th>
+                <th>Message</th>
+                <th style="width:160px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Rows.Count == 0)
+            {
+                <tr><td colspan="5">No alerts for this patient.</td></tr>
+            }
+            else
+            {
+                foreach (var a in Model.Rows)
+                {
+                    var txt = $"Peak pressure index exceeded {a.ThresholdAu} AU for {a.AboveForSeconds}s";
+                    var date = a.DatasetDateStr;
+                    <tr>
+                        <td>@a.TriggeredLocal</td>
+                        <td>@a.AboveForSeconds s</td>
+                        <td>@a.ThresholdAu AU</td>
+                        <td>@txt</td>
+                        <td>
+                            <a class="clickable"
+                               title="View context in Monitor"
+                               href="@Url.Action("PatientMonitor", "Clinician", new { id = Model.PatientId, date = date, duration = 30, seek = a.StartFrameIndex })">
+                                View context →
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</section>

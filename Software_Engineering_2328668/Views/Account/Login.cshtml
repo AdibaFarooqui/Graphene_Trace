@@ -1,0 +1,45 @@
+﻿@model Software_Engineering_2328668.Models.ViewModels.LoginViewModel
+@{
+    Layout = null; /* stand-alone login page */
+    ViewData["Title"] = "Sensore Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/login.css" />
+</head>
+<body class="login-page">
+    <div class="login-card" role="dialog" aria-labelledby="login-heading">
+        <div class="header" id="login-heading">Login to your Sensore Account</div>
+        <div class="body">
+
+            <!-- NEW: model-only summary (shows generic "Invalid username or password.") -->
+            <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+            <form asp-action="Login" method="post" novalidate>
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="ReturnUrl" />
+
+                <label for="Username">Username*:</label>
+                <input asp-for="Username" id="Username" type="text" autocomplete="username" />
+                <span asp-validation-for="Username" class="field-validation-error"></span> <!-- NEW -->
+
+                <label for="Password">Password*:</label>
+                <input asp-for="Password" id="Password" type="password" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="field-validation-error"></span> <!-- NEW -->
+
+                <div style="margin-top:12px;">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NEW: client-side validation scripts since Layout = null -->
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>
+

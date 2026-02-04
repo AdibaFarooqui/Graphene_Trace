@@ -1,0 +1,64 @@
+﻿@* Patient-area layout:
+   - Shows global brand strip (logo + "Sensore by Graphene Trace")
+   - Navy top bar (Home / Logout)
+   - Fixed/sticky left sidebar (Monitor, Alerts, Patient details)
+   - Scrollable white content on the right
+   Uses ViewData to receive patient context: PatientId, PatientName, SensoreId, ActiveTab *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Patient</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/brand.css" />
+    <link rel="stylesheet" href="/css/clinician.css" />
+    <link rel="stylesheet" href="/css/patient.css" />
+</head>
+
+<body>
+    @await Html.PartialAsync("_BrandHeader")
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <a class="home-link" href="@Url.Action("Dashboard", "Clinician")">Home</a>
+        </div>
+        <div class="topbar-right">
+            <a class="logout-link" href="@Url.Action("Logout", "Account")">Logout</a>
+        </div>
+    </header>
+
+    <div class="patient-wrap">
+        <aside class="patient-sidebar">
+            <div class="patient-card">
+                <div class="p-name">@((ViewData["PatientName"] ?? "").ToString())</div>
+                <div class="p-meta">
+                    <span class="tag">PID</span> @ViewData["PatientId"]
+                    <span class="sep">•</span>
+                    <span class="tag">Sensore</span> @ViewData["SensoreId"]
+                </div>
+            </div>
+
+            @{
+                var pid = ViewData["PatientId"];
+                var active = (ViewData["ActiveTab"] ?? "").ToString()?.ToLowerInvariant();
+                string activeCls(string key) => active == key ? "active" : "";
+            }
+
+            <nav class="patient-nav">
+                <a class="nav-link @activeCls("monitor")"
+                   href="@Url.Action("PatientMonitor", "Clinician", new { id = pid })">Monitor</a>
+                <a class="nav-link @activeCls("alerts")"
+                   href="@Url.Action("Alerts", "Clinician", new { id = pid })">Alerts</a>
+                <a class="nav-link @activeCls("details")"
+                   href="@Url.Action("PatientDetails", "Clinician", new { id = pid })">Patient details</a>
+            </nav>
+        </aside>
+
+        <main class="patient-main">
+            @RenderBody()
+        </main>
+    </div>
+    @* Page-specific scripts go here (e.g., monitor.js) *@
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

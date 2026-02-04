@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<h1>This is the admin page.</h1>
+<p>You are logged in as @User.Identity?.Name</p>
+<form method="post" action="@Url.Action("RunIngestion", "Admin")">
+    <button type="submit">Run CSV Ingestion</button>
+</form>
+<p><a href="/Account/Logout">Logout</a></p>

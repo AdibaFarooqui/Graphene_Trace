@@ -1,0 +1,49 @@
+﻿@model Software_Engineering_2328668.Models.ViewModels.ClinicianLandingViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";  // use a minimal top bar layout
+    ViewData["Title"] = "My Patients";
+}
+
+<section>
+    <h1 style="margin: 0 0 8px 0;">My Patients</h1>
+    <form method="get" class="search-row" action="@Url.Action("Dashboard","Clinician")">
+        <input type="text" name="q" value="@Model.Query" placeholder="Search by PID or name..." />
+        <button type="submit">Search</button>
+        @* Optional: a clear button *@
+        @if (!string.IsNullOrWhiteSpace(Model.Query))
+        {
+            <a href="@Url.Action("Dashboard", "Clinician")" style="margin-left:6px;">Clear</a>
+        }
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:120px;">PID</th>
+                <th>Name</th>
+                <th style="width:220px;">Last visited</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Rows.Count == 0)
+            {
+                <tr><td colspan="3">No patients found.</td></tr>
+            }
+            else
+            {
+                foreach (var r in Model.Rows)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("PatientMonitor", "Clinician", new { id = r.Pid })">@r.Pid</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("PatientMonitor", "Clinician", new { id = r.Pid })">@r.FullName</a>
+                        </td>
+                        <td>@r.LastVisitedLabel</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</section>
