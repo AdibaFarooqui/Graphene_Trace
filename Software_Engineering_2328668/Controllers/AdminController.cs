@@ -20,19 +20,3 @@ namespace Software_Engineering_2328668.Controllers
         }
     }
 }
-
-
-
-/*using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Software_Engineering_2328668.Controllers
-{
-    [Authorize(Roles = "admin")]
-    public class AdminController : Controller
-    {
-        public IActionResult Dashboard() => View();
-    }
-}
-*/
-
