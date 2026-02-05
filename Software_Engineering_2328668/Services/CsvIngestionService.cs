@@ -222,8 +222,8 @@ namespace Software_Engineering_2328668.Services
                 Height = HEIGHT,
                 MinAuDataset = datasetMin == decimal.MaxValue ? null : datasetMin,
                 MaxAuDataset = datasetMax == decimal.MinValue ? null : datasetMax,
-                P01AuDataset = null,  // optional; not computed in MVP
-                P99AuDataset = null,  // optional; not computed in MVP
+                P01AuDataset = null,  
+                P99AuDataset = null,  
                 StoragePath = null,
                 Checksum = ComputeSha256File(filePath),
                 IngestedAt = DateTime.UtcNow
