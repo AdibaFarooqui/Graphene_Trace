@@ -93,7 +93,7 @@ namespace Software_Engineering_2328668.Data
                 await db.SaveChangesAsync();
             }
 
-            // The five raw-data patients (AU thresholds per your earlier brief)
+            // The five raw-data patients
 
             await EnsureProfileAsync(
                 username: "p_javery",
