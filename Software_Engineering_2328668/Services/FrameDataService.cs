@@ -63,7 +63,7 @@ namespace Software_Engineering_2328668.Services
             const int HEIGHT = 32;
 
             using var reader = new StreamReader(csvPath);
-            // We'll parse as simple CSV with Split for speed & no headers
+            // Parse as simple CSV with Split for speed & no headers
             // Each frame = 32 lines * 32 integers
             using var fs = new FileStream(cachePath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
             using var bw = new BinaryWriter(fs);
